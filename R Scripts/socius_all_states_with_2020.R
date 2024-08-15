@@ -12,7 +12,7 @@ library(nflplotR)
 ### extrafont provides ability to use system fonts in ggplot
 library(extrafont)
 loadfonts(device = "win")
-#font_import()
+font_import()
 
 cp_all_with_2020_fixed <- readxl::read_xlsx("CSV Files//corp_76to20_bystate.xlsx") %>%
   mutate("race_fixed" = ifelse(race == "HP", "AI", race)) %>%
@@ -210,6 +210,7 @@ cp_all_rr_with_2020 <- readxl::read_xlsx("CSV Files//corp_76to20_bystate.xlsx") 
         legend.text = element_text(family = "Seaford", face = "plain", size = 7))
 
 oss_all_with_2020 <- read_csv("CSV Files//suspensions_data.csv") %>%
+  mutate(YEAR = as.numeric(gsub(2021, 2020, YEAR))) %>%
   drop_na(STATE_CODE) %>%
   mutate("race_fixed" = ifelse(race == "HP", "AI", race)) %>%
   group_by(YEAR, race_fixed) %>%
@@ -249,6 +250,7 @@ oss_all_with_2020 <- read_csv("CSV Files//suspensions_data.csv") %>%
         legend.text = element_text(family = "Seaford", face = "plain", size = 7))
 
 oss_all_rr_with_2020 <- read_csv("CSV Files//suspensions_data.csv") %>%
+  mutate(YEAR = as.numeric(gsub(2021, 2020, YEAR))) %>%
   filter(STATE_CODE %!in% cp_states & STATE_CODE %!in% c("NJ", "MA")) %>%
   filter(race != "total") %>%
   mutate("race_adjusted" = ifelse(race %!in% c("BL", "HI", "WH", "AI", "AS"), "OTHER", race)) %>%
@@ -305,13 +307,14 @@ oss_all_rr_with_2020 <- read_csv("CSV Files//suspensions_data.csv") %>%
         legend.title = element_text(family = "Seaford", face = "bold", size = 10),
         legend.text =element_text(family = "Seaford", face = "plain", size = 7))
 
-socius_with_2020 <- plot_grid(plot_grid(cp_all_with_2020_fixed + theme(legend.position = "hidden"),
-                    cp_all_rr_with_2020_fixed + theme(legend.position = "hidden",
-                                                plot.title = element_blank()),
-                    ncol = 1),
+socius_with_2020 <- plot_grid(
           plot_grid(oss_all_with_2020 + theme(legend.position = "hidden"),
                     oss_all_rr_with_2020 + theme(legend.position = "hidden",
                                                 plot.title = element_blank()),
+                    ncol = 1),
+          plot_grid(cp_all_with_2020_fixed + theme(legend.position = "hidden"),
+                    cp_all_rr_with_2020_fixed + theme(legend.position = "hidden",
+                                                      plot.title = element_blank()),
                     ncol = 1),
           plot_grid(racial_group_legend,
                     rr_legend,
