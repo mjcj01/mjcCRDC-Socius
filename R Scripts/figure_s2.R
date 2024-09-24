@@ -14,10 +14,8 @@ library(extrafont)
 loadfonts(device = "win")
 #font_import()
 
-#eight_colors <- c("#BF994C", "#4B4BBC", "#9BBF4C", "#974CBF", "#BF4C4C", "#4CBF73", "#4C9CBF", "#BF4C9C")
-
-### redefining eight colors to 5 colors to save time
 eight_colors <- c("#CC7A28", "#A3CB3A", "#49B67F", "#3E5AA8", "#AC4A4A")
+three_colors <- c("#CC7A28", "#A3CB3A", "#49B67F", "#3E5AA8")
 
 cp_always_ggplot <- ggplot(data = cp_always, aes(x = YEAR, y = cp_rate, color = legend_text)) +
   geom_line(size = 1, lineend = "round") +
