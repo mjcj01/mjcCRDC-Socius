@@ -14,6 +14,9 @@ library(extrafont)
 loadfonts(device = "win")
 font_import()
 
+eight_colors <- c("#CC7A28", "#A3CB3A", "#49B67F", "#3E5AA8", "#AC4A4A")
+three_colors <- c("#CC7A28", "#A3CB3A", "#49B67F", "#3E5AA8")
+
 cp_all_with_2020_fixed <- readxl::read_xlsx("CSV Files//corp_76to20_bystate.xlsx") %>%
   mutate("race_fixed" = ifelse(race == "HP", "AI", race)) %>%
   group_by(YEAR, race_fixed) %>%
