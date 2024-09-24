@@ -14,11 +14,8 @@ library(extrafont)
 loadfonts(device = "win")
 #font_import()
 
-### Color scheme
-#eight_colors <- c("#BF994C", "#4B4BBC", "#9BBF4C", "#974CBF", "#BF4C4C", "#4CBF73", "#4C9CBF", "#BF4C9C")
-
-### redefining eight colors to 5 colors to save time
 eight_colors <- c("#CC7A28", "#A3CB3A", "#49B67F", "#3E5AA8", "#AC4A4A")
+three_colors <- c("#CC7A28", "#A3CB3A", "#49B67F", "#3E5AA8")
 
 ### Corporal punishment graph panels
 cp_all_universe_ggplot <- ggplot(data = cp_all_universe, 
