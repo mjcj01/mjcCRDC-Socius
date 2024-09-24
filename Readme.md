@@ -5,3 +5,5 @@ To create the visuals, multiple steps are taken:
 2. socius_data_prep.R, located within the folder "R Scripts", needs to be executed.
 
 3. The layouts and various figures can then be generated as needed using the other R codes in the folder "R Scripts". The file names correspond to the figure number in the text (e.g., Figure S2 in the supplemental text is figure_s2.r). The figure files can executed in any order as long as socious_data_prep.r has been executed first.
+
+IMPORTANT: As noted in each file, you will receive lots of errors when you run the code that pulls the legends from each plot and creates the plot layout. This is due to using a custom font (Seaford, in this case). The code will still work though!
